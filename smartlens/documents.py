@@ -5,7 +5,7 @@ import base64
 import json
 from .util import makeRequest, checkIfValidURL, isBase64
 
-def _runDocuments(image, apiKey):
+def _runDocuments(image, customExtractions, apiKey):
     imageBytes = None
 
     if (os.path.exists(image)):
@@ -28,7 +28,10 @@ def _runDocuments(image, apiKey):
         return {"error": "Your \"document\" parameter needs to be either a path to a local document (pdf, jpeg, or png), a string of base64 bytes (pdf, jpeg, or png), or a URL to a remote image (pdf, jpeg, or png)."}
 
     # Compose a JSON Predict request
-    data = json.dumps({'document': imageBytes})
+    if customExtractions is not None:
+        data = json.dumps({'document': imageBytes, 'custom_extractions': customExtractions})
+    else:
+        data = json.dumps({'document': imageBytes})
 
     url = 'https://api.smartlens.ai/v1/models/document-ai/predict'
     r = makeRequest(url, data, apiKey)
@@ -42,7 +45,6 @@ def _runTextAnalysis(text, customExtractions, apiKey):
     # Compose a JSON Predict request
     if customExtractions is not None:
         data = json.dumps({'text': text, 'custom_extractions': customExtractions})
-        print(data)
     else:
         data = json.dumps({'text': text})
 

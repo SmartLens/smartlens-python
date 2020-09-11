@@ -26,8 +26,8 @@ def runCaptions(image):
     response = _runCaptions(image, api_key)
     return response
 
-def runDocumentAI(document):
-    response = _runDocuments(document, api_key)
+def runDocumentAI(document, customExtractions=None):
+    response = _runDocuments(document, customExtractions, api_key)
     return response
 
 def runTextAnalysis(text, customExtractions=None):
