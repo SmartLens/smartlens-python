@@ -31,12 +31,12 @@ import smartlens
 smartlens.api_key = "YOUR-API-KEY"
 
 # tag image
-tags = smartlens.tagImage(
+tags = smartlens.runTags(
     image = "path/to/my/image"
 )
 
 # caption image
-captions = smartlens.captionImage(
+captions = smartlens.runCaptions(
     image = "path/to/my/image"
 )
 
