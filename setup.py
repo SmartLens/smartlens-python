@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="smartlens", # Replace with your own username
-    version="0.9.2",
+    version="1.0.0",
     author="SmartLens Technologies, Inc.",
     author_email="michael@smartlens.ai",
     description="A Python library for the SmartLens API.",
