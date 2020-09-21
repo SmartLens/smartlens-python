@@ -19,7 +19,9 @@ def _runDocuments(image, customExtractions, apiKey):
             imageBytes = str(image, encoding='utf-8')
     elif (checkIfValidURL(image)):
         try:
-            response = urllib.request.urlopen(image)
+            req =  urllib.request.Request(image)
+            req.add_header('User-Agent', 'Mozilla/5.0')
+            response = urllib.request.urlopen(req)
             imageBytes = response.read()
         except urllib.error.HTTPError:
             return {"error": "The URL you passed in is invalid."}
